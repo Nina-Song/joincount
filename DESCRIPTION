@@ -1,0 +1,16 @@
+Package: joincount
+Type: Package
+Title: Join count analysis for spatial transcriptomic dataset
+Version: 0.99.0
+Author: Jiarong Song
+Maintainer: The package maintainer <yourself@somewhere.net>
+Description: More about what it does (maybe more than one line)
+    Use four spaces when indenting paragraphs within the Description.
+License: MIT + file LICENSE
+Encoding: UTF-8
+Imports: Seurat, utils, graphics, stats, raster, spdep, sp
+LazyData: true
+RoxygenNote: 7.1.2
+Suggests: 
+    testthat (>= 3.0.0)
+Config/testthat/edition: 3
