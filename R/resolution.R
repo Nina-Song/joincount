@@ -1,4 +1,5 @@
-#' Automatically calculating the resolution for rasterization.
+#' Automatically calculating the resolution for rasterization
+#' when the plot is horizontal setting
 #'
 #' This function ---
 #'
@@ -55,4 +56,65 @@ resolutionCalc <- function(sample){
   Y <- median(unlist(Y))
 
   return(c(X, Y))
+}
+
+
+#' Automatically calculating the resolution for rasterization
+#' when the coordinates are veritical setting
+#'
+#' This function ---
+#'
+#' @importFrom Seurat GetTissueCoordinates
+#' @importFrom graphics boxplot
+#' @importFrom stats median
+#' @export
+#'
+#' @param sample seruat object that have cluster labels attached.
+#'
+#' @return length and height of resolution.
+#'
+#' @examples
+#' sample <- spatialDataPrep("/Users/ninasong/Desktop/Craig_lab/GeoSpatial/slide120_D1")
+#' List <- resolutionCalcVer(sample)
+
+resolutionCalcVer <- function(sample){
+  copyCoord <- GetTissueCoordinates(sample)
+  copyCoord$int.row <- as.integer(copyCoord$imagerow)
+  copyCoord$int.col <- as.integer(copyCoord$imagecol)
+
+  diffCol <- list()
+  diffRow <- list()
+
+  for (i in 1:nrow(copyCoord)){
+    a <- copyCoord$int.row[i]
+    targetCol <- subset(copyCoord, int.row == a)[order(subset(copyCoord, int.row == a)$imagecol),]
+    subtractCol <- diff(as.matrix(targetCol$imagecol))
+    outliersA <- boxplot(subtractCol, plot=FALSE)$out
+    if (length(outliersA) > 0){
+      subtractCol <- subtractCol[-which(subtractCol %in% outliersA),]
+      differenceInCol <- mean(subtractCol)
+    } else {
+      differenceInCol <- mean(subtractCol)
+    }
+    diffCol <- c(diffCol, differenceInCol)
+
+    b <- copyCoord$int.col[i]
+    targetRow <- subset(copyCoord, int.col == b)[order(subset(copyCoord, int.col == b)$imagerow),]
+    subtractRow <- diff(as.matrix(targetRow$imagerow))
+    outliersB <- boxplot(subtractRow, plot=FALSE)$out
+    if (length(outliersB) > 0){
+      subtractRow <- subtractRow[-which(subtractRow %in% outliersB),]
+      differenceInRow <- mean(subtractRow)/2
+    } else {
+      differenceInRow <- mean(subtractRow)/2
+    }
+    diffRow <- c(diffRow, differenceInRow )
+  }
+
+  X <- lapply(diffCol, function(x) x[!is.na(x)])
+  X <- median(unlist(X))
+  Y <- lapply(diffRow, function(x) x[!is.na(x)])
+  Y <- median(unlist(Y))
+
+  return(c(Y, X))
 }

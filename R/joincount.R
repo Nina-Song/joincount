@@ -10,7 +10,7 @@
 #' @return Join count analysis results - cluster pair vs. their z-score.
 #'
 #' @examples
-#' sample <- spatialDataPrep("/Users/ninasong/Desktop/spatialProject/spatialDataset/10xDemo/mouse_brain")
+#' sample <- spatialDataPrep("/Users/ninasong/Desktop/Craig_lab/GeoSpatial/breast_cancer")
 #' mosaicIntegration <- rasterizeEachCluster(sample)
 #' joincount.filtered <- joincountAnalysis(mosaicIntegration)
 
