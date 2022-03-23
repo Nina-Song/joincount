@@ -43,5 +43,8 @@ joincountAnalysis <- function(mosaicIntegration){
   } else {
     stop("The length of mosaiced data and the length of weights list is not equal.")
   }
-  return(joincount.filtered)
+  joincount.result <- as.data.frame(joincount.filtered)
+  joincount.result <- na.omit(joincount.result)
+
+  return(joincount.result)
 }
