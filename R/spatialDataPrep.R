@@ -1,16 +1,4 @@
-library(devtools)
-#setwd("/Users/ninasong/Desktop/Craig_lab/GeoSpatial")
-#create("testPackage")
-
-############  Data Prep  ###############
-# Including:
-# spatialDataPrep
-# resolutionCalc
-# rasterPrep
-
 #' Prepare input data
-#'
-#' This function ---
 #'
 #' @import Seurat
 #' @importFrom utils read.csv
@@ -23,10 +11,16 @@ library(devtools)
 #' @examples
 #' filename <- "/Users/ninasong/Desktop/Craig_lab/GeoSpatial/breast_cancer"
 #' sample <- spatialDataPrep(filename)
+#'
+#'
 spatialDataPrep <- function(filename){
   inputSample <- Load10X_Spatial(filename)
   sampleTransform <- SCTransform(inputSample, assay = "Spatial", verbose = FALSE)
   sampleMeta <- read.csv(paste(filename, "/analysis/clustering/graphclust/clusters.csv", sep = ""), sep = ',')
+  if (colnames(sampleMeta)[1] == "barcode"){
+    colnames(sampleMeta)[colnames(sampleMeta) == "barcode"] <- "Barcode"
+    colnames(sampleMeta)[colnames(sampleMeta) == "cluster"] <- "Cluster"
+  }
   rownames(sampleMeta) <- sampleMeta$Barcode
   sampleCluster <- AddMetaData(object = sampleTransform, metadata = sampleMeta)
   Idents(sampleCluster) <- "Cluster"

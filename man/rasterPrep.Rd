@@ -2,20 +2,22 @@
 % Please edit documentation in R/rasterPrep.R
 \name{rasterPrep}
 \alias{rasterPrep}
-\title{Finding the size of extent when the plot is horizonal setting.}
+\title{Finding the extent with buffer applied.}
 \usage{
-rasterPrep(sample)
+rasterPrep(sample, n)
 }
 \arguments{
 \item{sample}{seruat object that have cluster labels attached.}
+
+\item{n}{buffer for extent}
 }
 \value{
-length and height of the extent.
+raster layer with calculated resolution and extent with buffer applied
 }
 \description{
-This function ---
+Finding the extent with buffer applied.
 }
 \examples{
 sample <- spatialDataPrep("/Users/ninasong/Desktop/Craig_lab/GeoSpatial/breast_cancer")
-raster <- rasterPrep(sample)
+raster <- rasterPrep(sample, 10)
 }

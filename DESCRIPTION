@@ -2,13 +2,15 @@ Package: joincount
 Type: Package
 Title: Join count analysis for spatial transcriptomic dataset
 Version: 0.99.0
-Author: Jiarong Song
-Maintainer: The package maintainer <yourself@somewhere.net>
+Authors@R: c(
+    person("Jiarong", "Song", email="songjiar@usc.edu",role=c("cre","aut")),
+    person("David","Craig",email="davidwcr@usc.edu", role=c("aut"))
+    )
 Description: More about what it does (maybe more than one line)
     Use four spaces when indenting paragraphs within the Description.
 License: MIT + file LICENSE
 Encoding: UTF-8
-Imports: Seurat, utils, graphics, stats, raster, spdep, sp
+Imports: Seurat, utils, graphics, stats, raster, spdep, sp, reshape2, pheatmap
 LazyData: true
 RoxygenNote: 7.1.2
 Suggests: 
@@ -17,3 +19,4 @@ Suggests:
     testthat (>= 3.0.0)
 Config/testthat/edition: 3
 VignetteBuilder: knitr
+biocViews: Transcriptomics, Clustering

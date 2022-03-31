@@ -2,8 +2,7 @@
 % Please edit documentation in R/rasterization.R
 \name{rasterizeEachCluster}
 \alias{rasterizeEachCluster}
-\title{Rasterize each cluster and return the integrated rasters (mosaic)
-when the plot is horizontal setting}
+\title{Rasterize each cluster and return the integrated mosaic}
 \usage{
 rasterizeEachCluster(sample)
 }
@@ -11,10 +10,10 @@ rasterizeEachCluster(sample)
 \item{sample}{seruat object that have cluster labels attached.}
 }
 \value{
-length and height of the extent.
+Integrated mosaic.
 }
 \description{
-This function ---
+Rasterize each cluster and return the integrated mosaic
 }
 \examples{
 sample <- spatialDataPrep("/Users/ninasong/Desktop/Craig_lab/GeoSpatial/breast_cancer")

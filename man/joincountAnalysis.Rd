@@ -10,13 +10,13 @@ joincountAnalysis(mosaicIntegration)
 \item{mosaicIntegration}{RasterLayer that output from Function rasterization.}
 }
 \value{
-Join count analysis results - cluster pair vs. their z-score.
+Join count analysis results.
 }
 \description{
-This function ---
+Join count analysis.
 }
 \examples{
 sample <- spatialDataPrep("/Users/ninasong/Desktop/Craig_lab/GeoSpatial/breast_cancer")
 mosaicIntegration <- rasterizeEachCluster(sample)
-joincount.filtered <- joincountAnalysis(mosaicIntegration)
+joincount.result <- joincountAnalysis(mosaicIntegration)
 }

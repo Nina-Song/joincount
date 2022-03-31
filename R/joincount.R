@@ -1,18 +1,17 @@
 #' Join count analysis.
 #'
-#' This function ---
-#'
 #' @import spdep
+#' @importFrom stats na.omit
 #' @export
 #'
 #' @param mosaicIntegration RasterLayer that output from Function rasterization.
 #'
-#' @return Join count analysis results - cluster pair vs. their z-score.
+#' @return Join count analysis results.
 #'
 #' @examples
 #' sample <- spatialDataPrep("/Users/ninasong/Desktop/Craig_lab/GeoSpatial/breast_cancer")
 #' mosaicIntegration <- rasterizeEachCluster(sample)
-#' joincount.filtered <- joincountAnalysis(mosaicIntegration)
+#' joincount.result <- joincountAnalysis(mosaicIntegration)
 
 joincountAnalysis <- function(mosaicIntegration){
   nbList <- cell2nb(nrow = nrow(mosaicIntegration), ncol = ncol(mosaicIntegration), type = "queen")
@@ -41,10 +40,11 @@ joincountAnalysis <- function(mosaicIntegration){
                                           zero.policy = FALSE,
                                           adjust.n = FALSE)
   } else {
-    stop("The length of mosaiced data and the length of weights list is not equal.")
+    print("The length of mosaiced data and the length of weights list is not equal.")
   }
   joincount.result <- as.data.frame(joincount.filtered)
   joincount.result <- na.omit(joincount.result)
 
   return(joincount.result)
 }
+

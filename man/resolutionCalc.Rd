@@ -2,8 +2,7 @@
 % Please edit documentation in R/resolution.R
 \name{resolutionCalc}
 \alias{resolutionCalc}
-\title{Automatically calculating the resolution for rasterization
-when the plot is horizontal setting}
+\title{Automatically calculating the resolution for rasterization.}
 \usage{
 resolutionCalc(sample)
 }
@@ -14,9 +13,9 @@ resolutionCalc(sample)
 length and height of resolution.
 }
 \description{
-This function ---
+Automatically calculating the resolution for rasterization.
 }
 \examples{
 sample <- spatialDataPrep("/Users/ninasong/Desktop/Craig_lab/GeoSpatial/breast_cancer")
-List <- resolutionCalc(sample)
+resolutionList <- resolutionCalc(sample)
 }
